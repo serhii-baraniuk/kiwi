@@ -36,8 +36,11 @@ class CountryField extends Component {
   }
 
   render() {
+    const { onChange, ...inputOptions } = this.props
+
     return (
       <Autocomplete
+        renderInput={props => <input className="input" {...inputOptions} {...props} />}
         getItemValue={item => item.id}
         items={this.state.items}
         onChange={this.handleChangeValue}
