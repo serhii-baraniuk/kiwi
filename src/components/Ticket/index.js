@@ -10,7 +10,7 @@ const Ticket = props => (
         <span>&nbsp;-&nbsp;</span>
         <span className="ticket__to">{props.to}</span>
       </div>
-      <div className="ticket__date">{new Date(props.date).toDateString()}</div>
+      <div className="ticket__date">{new Date(props.date).toString()}</div>
     </div>
     <div className="ticket__right">
       <span className="ticket__price">{props.price}</span>

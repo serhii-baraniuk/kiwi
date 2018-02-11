@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import SearchForm from '../SearchForm'
+import Ticket from '../Ticket'
+import queryParams from '../../utils/queryParams'
 import './index.css'
 
 class App extends Component {
@@ -8,7 +10,7 @@ class App extends Component {
 
     this.state = {
       filters: {},
-      items: [],
+      data: [],
       isLoading: false,
       isLoaded: false,
       error: undefined,
@@ -27,38 +29,55 @@ class App extends Component {
 
     try {
       this.setState({ isLoading: true, error: undefined })
-      const response = await fetch(`https://api.skypicker.com/flights?v=2&locale=en&flyFrom=${this.state.filters.countryFrom}&to=${this.state.filters.countryTo}&dateFrom=${this.state.filters.dateFrom}&dateTo=${this.state.filters.dateTo}`)
+
+      const query = queryParams({
+        v: 2,
+        locale: 'en',
+        typeFlight: this.state.filters.dateTo ? 'return' : 'oneway',
+        ...this.state.filters,
+      })
+
+      const response = await fetch(`https://api.skypicker.com/flights?${query}`)
       const data = await response.json()
-      this.setState({ isLoading: false, isLoaded: true, items: data.data })
+      this.setState({ isLoading: false, isLoaded: true, data })
     } catch (error) {
-      this.setState({ isLoading: false, error: error.message })
+      this.setState({ isLoading: false, error: 'Something went wrong' })
     }
   }
 
   render() {
     return (
-      <div className="App">
-        <div>
-          <SearchForm onSubmit={this.handleChangeFilters} />
+      <div className={`main-page ${this.state.isLoading ? 'main-page_loading' : ''}`}>
+        <div className="main-page__filters">
+          <div className="main-page__filters-inner">
+            <h1 className="main-page__title">KIWI</h1>
+            <SearchForm
+              onSubmit={this.handleChangeFilters}
+              disabled={this.state.isLoading}
+              isLoading={this.state.isLoading}
+            />
+          </div>
         </div>
 
-        {this.state.error &&
-          <div>{this.state.error}</div>
-        }
+        <div className="main-page__result">
+          {this.state.error &&
+            <div className="main-page__error">
+              {this.state.error}
+            </div>
+          }
 
-        {this.state.isLoaded &&
-          <div>is loaded</div>
-        }
-
-        {this.state.isLoading &&
-          <div>is loading...</div>
-        }
-
-        {this.state.items.map(item => (
-          <div>
-            <div>{item.cityFrom} - {item.cityTo} - {item.dTime} === {item.price} EUR</div>
-          </div>
-        ))}
+          {this.state.isLoaded && this.state.data.data.map(item => (
+            <div key={item.id} className="main-page__ticket">
+              <Ticket
+                from={item.cityFrom}
+                to={item.cityTo}
+                price={item.price}
+                date={item.dTimeUTC * 1000}
+                currency={this.state.data.currency}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
