@@ -1,0 +1,23 @@
+.input {
+  background: rgba(255,255,255,.2);
+  border: 0;
+  width: 100%;
+  padding: 13px 15px;
+  height: 50px;
+  font-size: 18px;
+  transition: background 0.15s ease-out;
+  color: white;
+}
+
+.input::placeholder {
+  color: white;
+}
+
+.input:focus {
+  background: white;
+  color: black;
+}
+
+.input:focus::placeholder {
+  color: #434445;
+}
