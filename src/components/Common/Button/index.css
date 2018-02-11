@@ -1,0 +1,13 @@
+.button {
+  height: 50px;
+  padding: 0 25px;
+  display: inline-flex;
+  justify-content: center;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+}
+
+.button__text {
+  font-size: 22px;
+}
