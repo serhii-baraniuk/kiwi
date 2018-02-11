@@ -1,0 +1,31 @@
+.ticket {
+  padding: 20px;
+  box-shadow: 0 0 2px rgba(0,0,0,.2);
+  display: flex;
+  cursor: pointer;
+  transition: all .15s ease-out;
+}
+
+.ticket:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+
+.ticket__left {
+  flex: 1;
+}
+
+.ticket__cities {
+  font-weight: bold;
+}
+
+.ticket__date {
+  color: gray;
+}
+
+.ticket__price {
+  font-size: 24px;
+}
+
+.ticket__currency {
+  margin-left: 5px;
+}
