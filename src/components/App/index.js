@@ -56,7 +56,7 @@ class App extends Component {
 
         {this.state.items.map(item => (
           <div>
-            <div>{item.cityFrom} - {item.cityTo} - {item.dTime}</div>
+            <div>{item.cityFrom} - {item.cityTo} - {item.dTime} === {item.price} EUR</div>
           </div>
         ))}
       </div>
