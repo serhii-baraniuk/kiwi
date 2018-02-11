@@ -10,8 +10,8 @@ class SearchForm extends Component {
     super(props)
 
     this.state = {
-      countryFrom: undefined,
-      countryTo: undefined,
+      flyFrom: undefined,
+      to: undefined,
       dateFrom: undefined,
       dateTo: undefined,
     }
@@ -36,11 +36,11 @@ class SearchForm extends Component {
         <div>
           <CountryField
             placeholder="From"
-            onChange={countryFrom => this.setState({ countryFrom })}
+            onChange={flyFrom => this.setState({ flyFrom })}
           />
           <CountryField
             placeholder="To"
-            onChange={countryTo => this.setState({ countryTo })}
+            onChange={to => this.setState({ to })}
           />
         </div>
 
