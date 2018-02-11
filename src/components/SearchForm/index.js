@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Input from '../Common/Input'
+import Button from '../Common/Button'
 import CountryField from '../CountryField'
+import './index.css'
 
 class SearchForm extends Component {
   constructor(props) {
@@ -29,23 +32,47 @@ class SearchForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <CountryField onChange={countryFrom => this.setState({ countryFrom })} />
-        <CountryField onChange={countryTo => this.setState({ countryTo })} />
+      <form onSubmit={this.handleSubmit} className="search-form">
+        <div>
+          <CountryField
+            placeholder="From"
+            onChange={countryFrom => this.setState({ countryFrom })}
+          />
+          <CountryField
+            placeholder="To"
+            onChange={countryTo => this.setState({ countryTo })}
+          />
+        </div>
 
-        <input
-          type="date"
-          name="dateFrom"
-          onChange={e => this.handleChangeDate(e, 'dateFrom')}
-        />
+        <div className="search-form__dates">
+          <Input
+            type="date"
+            name="dateFrom"
+            onChange={e => this.handleChangeDate(e, 'dateFrom')}
+          />
 
-        <input
-          type="date"
-          name="dateTo"
-          onChange={e => this.handleChangeDate(e, 'dateTo')}
-        />
+          <Input
+            type="date"
+            name="dateTo"
+            onChange={e => this.handleChangeDate(e, 'dateTo')}
+          />
 
-        <input type="submit" onClick={this.handleSubmit} />
+        </div>
+
+        <div className="search-form__submit">
+          <Button
+            type="submit"
+            disabled={this.props.disabled}
+            onClick={this.handleSubmit}
+            text={<span>{this.props.isLoading ? 'loading...' : 'Go'}</span>}
+            style={{
+              color: 'white',
+              background: '#21955b',
+              width: '100%',
+            }}
+          />
+        </div>
+
       </form>
     )
   }
@@ -53,10 +80,14 @@ class SearchForm extends Component {
 
 SearchForm.propTypes = {
   onSubmit: PropTypes.func,
+  disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
 }
 
 SearchForm.defaultProps = {
   onSubmit: () => {},
+  disabled: false,
+  isLoading: false,
 }
 
 export default SearchForm

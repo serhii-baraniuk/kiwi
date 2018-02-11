@@ -1,0 +1,17 @@
+.search-form {
+  padding: 20px;
+}
+
+.search-form__dates {
+  display: flex;
+  margin-top: 10px;
+}
+
+.search-form__dates > * {
+  flex: 1;
+}
+
+.search-form__submit {
+  margin-top: 10px;
+  width: 100%;
+}
