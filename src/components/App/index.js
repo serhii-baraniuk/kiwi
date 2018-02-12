@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SearchForm from '../SearchForm'
-import FlyItem from '../FlyItem'
+import FlyList from '../FlyList'
 import queryParams from '../../utils/queryParams'
 import './index.css'
 
@@ -66,17 +66,9 @@ class App extends Component {
             </div>
           }
 
-          {this.state.isLoaded && this.state.data.data.map(item => (
-            <div key={item.id} className="main-page__fly-item">
-              <FlyItem
-                from={item.cityFrom}
-                to={item.cityTo}
-                price={item.price}
-                date={item.dTimeUTC * 1000}
-                currency={this.state.data.currency}
-              />
-            </div>
-          ))}
+          {this.state.isLoaded &&
+            <FlyList {...this.state.data} />
+          }
         </div>
       </div>
     )
