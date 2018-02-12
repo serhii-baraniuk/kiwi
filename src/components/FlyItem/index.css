@@ -1,4 +1,4 @@
-.ticket {
+.fly-item {
   padding: 20px;
   box-shadow: 0 0 2px rgba(0,0,0,.2);
   display: flex;
@@ -6,26 +6,26 @@
   transition: all .15s ease-out;
 }
 
-.ticket:hover {
+.fly-item:hover {
   box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 
-.ticket__left {
+.fly-item__left {
   flex: 1;
 }
 
-.ticket__cities {
+.fly-item__cities {
   font-weight: bold;
 }
 
-.ticket__date {
+.fly-item__date {
   color: gray;
 }
 
-.ticket__price {
+.fly-item__price {
   font-size: 24px;
 }
 
-.ticket__currency {
+.fly-item__currency {
   margin-left: 5px;
 }
