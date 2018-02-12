@@ -5,6 +5,9 @@ import './index.css'
 
 const FlyList = props => (
   <div className="fly-list">
+    <div className="fly-list__count">
+      Found {props.data.length} items
+    </div>
     {props.data.map(item => (
       <div key={item.id} className="fly-list__item">
         <FlyItem

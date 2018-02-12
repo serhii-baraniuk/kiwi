@@ -47,7 +47,7 @@ class CountryField extends Component {
         onSelect={this.handleSelect}
         value={this.state.value}
         renderItem={(item, isHighlighted) => (
-          <div key={item.id} style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+          <div key={item.id} style={{ padding: '20px', background: isHighlighted ? 'lightgray' : 'white' }}>
             {item.value}
           </div>
         )}
