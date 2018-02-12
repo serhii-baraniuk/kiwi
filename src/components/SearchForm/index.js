@@ -33,7 +33,7 @@ class SearchForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="search-form">
-        <div>
+        <div className="search-form__row search-form__cities">
           <CountryField
             placeholder="From"
             onChange={flyFrom => this.setState({ flyFrom })}
@@ -44,7 +44,7 @@ class SearchForm extends Component {
           />
         </div>
 
-        <div className="search-form__dates">
+        <div className="search-form__row search-form__dates">
           <Input
             type="date"
             name="dateFrom"
